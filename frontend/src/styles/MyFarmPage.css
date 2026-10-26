@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap');
+
+.mf {
+  --forest: #0d3b1f; --green: #16a34a; --teal: #0f766e;
+  --ink: #16201a; --soft: #5f6b64; --line: #e7e8e3; --card: #fff;
+  font-family: 'Poppins', 'Noto Sans Devanagari', system-ui, sans-serif;
+  font-size: 14.5px; line-height: 1.5; color: var(--ink);
+  width: 100%; max-width: 1120px; margin: 0 auto;
+  padding: 1rem 0.8rem 5.5rem;
+  display: flex; flex-direction: column; gap: 0.9rem; box-sizing: border-box;
+}
+.mf *, .mf *::before, .mf *::after { box-sizing: border-box; }
+.mf :where(button) { font: inherit; color: inherit; cursor: pointer; border: 0; background: none; padding: 0; text-align: left; }
+.mf :where(h1, h2, h3, p, ul, dl, dd) { margin: 0; padding: 0; color: inherit; }
+.mf :where(ul) { list-style: none; }
+.mf :focus-visible { outline: 3px solid #f59e0b; outline-offset: 2px; }
+
+.mf-head { display: flex; flex-direction: column; gap: 0.75rem; }
+.mf-head h1 { font-size: 1.2rem; font-weight: 800; line-height: 1.2; }
+.mf-head p { margin-top: 2px; font-size: 0.88rem; font-weight: 600; color: var(--soft); }
+
+.mf-btn { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 52px; padding: 0 1.25rem; border-radius: 12px; background: var(--teal); color: #fff; font-weight: 600; font-size: 1rem; text-align: center; width: 100%; transition: transform 0.12s; }
+.mf-btn:active { transform: scale(0.99); }
+.mf-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.mf-btn-red { background: #dc2626; }
+.mf-add { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 52px; border-radius: 12px; background: var(--forest); color: #fff; font-weight: 600; font-size: 1rem; width: 100%; text-align: center; }
+.mf-btn-line { flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 50px; border-radius: 12px; border: 1px solid #d6d9d2; background: #fff; font-weight: 600; text-align: center; }
+.mf-danger { color: #b91c1c; border-color: #f0c4c4; }
+
+.mf-card { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 1rem; }
+
+/* Empty */
+.mf-empty { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 8px; padding: 2rem 1.1rem; }
+.mf-empty-icon { width: 72px; height: 72px; border-radius: 22px; display: grid; place-items: center; background: #ecfbf0; color: var(--green); margin-bottom: 4px; }
+.mf-empty h2 { font-size: 1.15rem; font-weight: 700; }
+.mf-empty p { color: var(--soft); max-width: 28rem; margin-bottom: 0.6rem; }
+.mf-empty .mf-btn { max-width: 22rem; }
+
+/* Farm cards */
+.mf-list { display: grid; grid-template-columns: 1fr; gap: 0.8rem; }
+.mf-farm { display: flex; flex-direction: column; gap: 0.9rem; }
+.mf-farm.active { border: 2px solid var(--green); padding: calc(1rem - 1px); }
+.mf-farm-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.mf-farm-title { min-width: 0; }
+.mf-farm-title h2 { font-size: 1.15rem; font-weight: 700; line-height: 1.3; overflow-wrap: anywhere; }
+.mf-farm-title p { display: flex; align-items: center; gap: 5px; color: var(--soft); margin-top: 2px; }
+.mf-farm-title svg { color: var(--green); flex-shrink: 0; }
+.mf-active { display: inline-flex; align-items: center; gap: 6px; color: #15803d; font-weight: 700; flex-shrink: 0; padding-top: 2px; }
+.mf-setactive { min-height: 44px; padding: 0 0.9rem; border-radius: 12px; border: 1px solid #cfd6cc; font-weight: 600; flex-shrink: 0; color: var(--forest); }
+
+.mf-rows > div { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 0.65rem 0; border-top: 1px solid var(--line); }
+.mf-rows dt { color: var(--soft); flex-shrink: 0; }
+.mf-rows dd { font-weight: 600; text-align: right; overflow-wrap: anywhere; }
+
+.mf-actions { display: flex; flex-direction: column; gap: 0.6rem; }
+.mf-actions-2 { display: flex; gap: 0.6rem; }
+
+/* Call */
+.mf-call { display: flex; align-items: center; gap: 14px; padding: 0.85rem 1rem; min-height: 72px; border-radius: 20px; background: var(--forest); color: #fff; text-decoration: none; }
+.mf-call-icon { width: 42px; height: 42px; border-radius: 14px; display: grid; place-items: center; background: rgba(255,255,255,0.14); color: #86efac; flex-shrink: 0; }
+.mf-call div { display: flex; flex-direction: column; }
+.mf-call div span { color: rgba(255,255,255,0.85); font-size: 0.85rem; }
+.mf-call strong { font-size: 1.1rem; }
+
+/* Sheets */
+.mf-overlay { position: fixed; inset: 0; z-index: 200; background: rgba(10, 25, 18, 0.55); display: flex; align-items: flex-end; justify-content: center; }
+.mf-sheet { width: 100%; max-width: 560px; max-height: 92vh; overflow-y: auto; background: #fff; border-radius: 24px 24px 0 0; padding: 1.1rem 1rem 1.25rem; display: flex; flex-direction: column; gap: 0.9rem; animation: mf-up 0.2s ease-out; font-family: 'Poppins', 'Noto Sans Devanagari', system-ui, sans-serif; font-size: 14.5px; color: var(--ink); }
+.mf-sheet *, .mf-sheet *::before, .mf-sheet *::after { box-sizing: border-box; }
+.mf-sheet :where(h3, p) { margin: 0; padding: 0; }
+.mf-sheet :where(button) { font: inherit; color: inherit; cursor: pointer; border: 0; background: none; padding: 0; }
+@keyframes mf-up { from { transform: translateY(40px); opacity: 0; } to { transform: none; opacity: 1; } }
+.mf-sheet-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.mf-sheet-head h3 { font-size: 1.2rem; font-weight: 700; }
+.mf-close { width: 44px; height: 44px; flex-shrink: 0; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--line) !important; }
+.mf-for { display: flex; align-items: center; gap: 6px; color: var(--soft); font-weight: 500; }
+.mf-sec { color: var(--soft); font-weight: 600; font-size: 0.9rem; margin-top: 0.3rem; }
+
+.mf-field { display: flex; flex-direction: column; gap: 6px; }
+.mf-field > span { font-weight: 600; }
+.mf-field input { width: 100%; height: 52px; padding: 0 1rem; font: inherit; font-size: 1.02rem; font-weight: 500; border: 1px solid #d6d9d2; border-radius: 14px; background: #f7f8f5; color: var(--ink); }
+.mf-field input:focus, .mf-select select:focus { outline: none; border-color: var(--green); background: #fff; }
+.mf-select { position: relative; display: flex; align-items: center; }
+.mf-select select { appearance: none; -webkit-appearance: none; width: 100%; height: 52px; padding: 0 44px 0 1rem; font: inherit; font-size: 1rem; font-weight: 500; border: 1px solid #d6d9d2; border-radius: 14px; background: #f7f8f5; color: var(--ink); }
+.mf-select svg { position: absolute; right: 14px; color: var(--soft); pointer-events: none; }
+.mf-two { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; }
+.mf-three { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.6rem; }
+.mf-three .mf-field > span { font-size: 0.84rem; }
+.mf-error { display: flex; align-items: flex-start; gap: 8px; color: #b91c1c; font-weight: 600; }
+.mf-error svg { flex-shrink: 0; margin-top: 2px; }
+.mf-sheet-actions { display: grid; grid-template-columns: 1fr 1.4fr; gap: 0.6rem; margin-top: 0.2rem; }
+.mf-btn-cancel { min-height: 52px; border-radius: 12px; border: 1px solid #d6d9d2 !important; font-weight: 600; text-align: center; }
+.mf-sheet-del { align-items: center; text-align: center; }
+.mf-sheet-del p { color: var(--soft); }
+.mf-sheet-del .mf-sheet-actions { width: 100%; }
+.mf-del-icon { width: 56px; height: 56px; border-radius: 18px; display: grid; place-items: center; background: #fde2e2; color: #dc2626; }
+
+@media (min-width: 720px) {
+  .mf { font-size: 16px; padding: 1.5rem 1.5rem 3rem; gap: 1.1rem; }
+  .mf-head { flex-direction: row; align-items: center; justify-content: space-between; }
+  .mf-head h1 { font-size: 1.75rem; } .mf-head p { font-size: 1rem; }
+  .mf-add { width: auto; padding: 0 1.5rem; }
+  .mf-list { grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .mf-overlay { align-items: center; }
+  .mf-sheet { border-radius: 24px; padding: 1.5rem; font-size: 16px; }
+}
+@media (prefers-reduced-motion: reduce) { .mf-sheet { animation: none !important; } }

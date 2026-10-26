@@ -1,0 +1,439 @@
+/* =====================================================================
+   VoiceAccessPage — Chat-style AI Farm Advisor
+   ===================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+.va-root {
+  font-family: 'Inter', system-ui, sans-serif;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 64px);
+  max-width: 780px;
+  margin: 0 auto;
+  background: #f8fafc;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── Header ──────────────────────────────────────────────────────────── */
+.va-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 1.25rem;
+  background: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  flex-shrink: 0;
+}
+
+.va-header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.va-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #059669 0%, #0f766e 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(5,150,105,0.3);
+}
+
+.va-header-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: -0.01em;
+}
+
+.va-header-status {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  color: #64748b;
+  margin-top: 1px;
+}
+
+.va-status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #22c55e;
+  animation: va-pulse 2s infinite;
+}
+
+@keyframes va-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.65; transform: scale(1.2); }
+}
+
+.va-header-right {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.va-lang-btn {
+  padding: 4px 12px;
+  border-radius: 20px;
+  border: 1.5px solid #e2e8f0;
+  background: #f8fafc;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.va-lang-btn.active {
+  background: #059669;
+  border-color: #059669;
+  color: #ffffff;
+}
+
+/* ── Farm Context Strip ──────────────────────────────────────────────── */
+.va-context-strip {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.25rem;
+  background: #f0fdf4;
+  border-bottom: 1px solid #bbf7d0;
+  font-size: 0.75rem;
+  color: #15803d;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+/* ── Messages ────────────────────────────────────────────────────────── */
+.va-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem 1rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  scroll-behavior: smooth;
+}
+
+.va-messages::-webkit-scrollbar { width: 4px; }
+.va-messages::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 4px; }
+
+.va-msg-row {
+  display: flex;
+  gap: 0.6rem;
+  max-width: 100%;
+  animation: va-slide-in 0.2s ease;
+}
+
+@keyframes va-slide-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.va-msg-row.user {
+  flex-direction: row-reverse;
+}
+
+.va-msg-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #059669, #0f766e);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.va-bubble {
+  max-width: 72%;
+  border-radius: 16px;
+  padding: 0.7rem 1rem;
+  position: relative;
+}
+
+.va-bubble p {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  white-space: pre-wrap;
+}
+
+.va-bubble.assistant {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-bottom-left-radius: 4px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  color: #1e293b;
+}
+
+.va-bubble.user {
+  background: linear-gradient(135deg, #059669 0%, #0f766e 100%);
+  color: #ffffff;
+  border-bottom-right-radius: 4px;
+}
+
+.va-bubble.error {
+  background: #fff1f2;
+  border-color: #fecdd3;
+  color: #be123c;
+}
+
+.va-bubble-meta {
+  font-size: 0.68rem;
+  color: #94a3b8;
+  margin-top: 0.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.va-speak-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: 0.45rem;
+  padding: 2px 9px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+  font-size: 0.7rem;
+  color: #64748b;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.15s;
+}
+
+.va-speak-btn:hover {
+  background: #e2e8f0;
+  color: #334155;
+}
+
+/* Typing indicator */
+.va-typing {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  padding: 0.15rem 0;
+}
+
+.va-typing span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #94a3b8;
+  animation: va-bounce 1.2s infinite ease-in-out;
+}
+
+.va-typing span:nth-child(2) { animation-delay: 0.2s; }
+.va-typing span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes va-bounce {
+  0%, 80%, 100% { transform: scale(1); opacity: 0.5; }
+  40% { transform: scale(1.3); opacity: 1; }
+}
+
+/* ── Suggestions ─────────────────────────────────────────────────────── */
+.va-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  flex-shrink: 0;
+}
+
+.va-suggestion-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.4rem 0.85rem;
+  border-radius: 20px;
+  border: 1.5px solid #d1fae5;
+  background: #f0fdf4;
+  font-size: 0.78rem;
+  color: #065f46;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+
+.va-suggestion-chip:hover {
+  background: #d1fae5;
+  border-color: #6ee7b7;
+  transform: translateY(-1px);
+}
+
+/* ── Error & Interim ─────────────────────────────────────────────────── */
+.va-error {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: #fff1f2;
+  border-top: 1px solid #fecdd3;
+  font-size: 0.8rem;
+  color: #be123c;
+  flex-shrink: 0;
+}
+
+.va-error button {
+  background: none;
+  border: none;
+  color: #be123c;
+  cursor: pointer;
+  padding: 2px;
+}
+
+.va-interim {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 1.25rem;
+  background: #eff6ff;
+  border-top: 1px solid #bfdbfe;
+  font-size: 0.8rem;
+  color: #1d4ed8;
+  font-style: italic;
+  flex-shrink: 0;
+}
+
+.va-interim-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #3b82f6;
+  animation: va-pulse 1s infinite;
+  flex-shrink: 0;
+}
+
+/* ── Input Bar ───────────────────────────────────────────────────────── */
+.va-input-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: #ffffff;
+  border-top: 1px solid #e2e8f0;
+  flex-shrink: 0;
+}
+
+.va-input-form {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 24px;
+  overflow: hidden;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.va-input-form:focus-within {
+  border-color: #059669;
+  box-shadow: 0 0 0 3px rgba(5,150,105,0.1);
+}
+
+.va-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 0.65rem 1rem;
+  font-size: 0.875rem;
+  color: #1e293b;
+  font-family: inherit;
+  outline: none;
+}
+
+.va-input::placeholder { color: #94a3b8; }
+
+.va-send-btn {
+  padding: 0.5rem 0.85rem;
+  background: #059669;
+  color: #ffffff;
+  border: none;
+  border-radius: 0 24px 24px 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: background 0.15s;
+}
+
+.va-send-btn:hover:not(:disabled) { background: #047857; }
+.va-send-btn:disabled { background: #d1fae5; cursor: not-allowed; }
+
+/* Mic Button */
+.va-mic-btn {
+  position: relative;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: none;
+  background: #f1f5f9;
+  color: #475569;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.va-mic-btn:hover { background: #e2e8f0; color: #1e293b; }
+
+.va-mic-btn.listening {
+  background: #dc2626;
+  color: #ffffff;
+  box-shadow: 0 0 0 4px rgba(220,38,38,0.2);
+}
+
+.va-mic-ring {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid rgba(220,38,38,0.5);
+  animation: va-ring 1.2s ease-out infinite;
+}
+
+@keyframes va-ring {
+  0%   { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+
+/* Stop Speaking Button */
+.va-stop-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1.5px solid #fca5a5;
+  background: #fff1f2;
+  color: #dc2626;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s;
+  flex-shrink: 0;
+}
+
+.va-stop-btn:hover {
+  background: #fee2e2;
+  border-color: #f87171;
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .va-bubble { max-width: 86%; }
+  .va-suggestions { padding: 0.4rem 0.75rem; }
+  .va-suggestion-chip { font-size: 0.73rem; padding: 0.35rem 0.7rem; }
+}

@@ -1,0 +1,154 @@
+/* App.css — */
+
+/* Shell Layout */
+.app-container {
+  min-height: 100vh;
+  min-height: 100dvh;
+  background-color: var(--bg-app);
+  display: flex;
+  flex-direction: column;
+  color: var(--text-body);
+  position: relative;
+}
+
+/* Landing Page */
+.app-container.landing-mode-active {
+  background-color: #04291f;
+}
+
+@media (min-width: 0px) {
+  .app-container.landing-mode-active {
+    min-height: 100vh;
+    min-height: 100dvh;
+    height: auto;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .app-container.landing-mode-active .app-main-layout {
+    height: auto;
+    overflow-y: visible;
+    padding-bottom: 0 !important;
+  }
+
+  .app-container.landing-mode-active .app-content-container {
+    height: auto;
+    overflow-y: visible;
+  }
+}
+
+.app-main-layout {
+  flex: 1;
+  display: flex;
+  width: 100%;
+  position: relative;
+  /* Reserve bottom */
+  padding-bottom: 68px;
+}
+
+@media (min-width: 1024px) {
+  .app-main-layout {
+    padding-bottom: 0;
+  }
+}
+
+.app-content-container {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Landing Pages: */
+.app-content-landing {
+  width: 100%;
+  padding-bottom: 0 !important;
+}
+
+/* Farmer App */
+.app-content-farmer {
+  width: 100%;
+  max-width: 100%;
+  padding: 0;
+}
+
+@media (min-width: 1024px) {
+  .app-main-layout {
+    padding-bottom: 0;
+  }
+  .app-content-farmer {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 1.5rem 2rem 3rem 2rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .app-content-farmer {
+    padding: 2rem 3rem 3rem 3rem;
+  }
+}
+
+/* Loading Screen */
+.app-loading-screen {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(160deg, #ecfdf5 0%, #d1fae5 50%, #a7f3d0 100%);
+  flex-direction: column;
+  gap: 16px;
+}
+
+.app-loading-spinner {
+  width: 52px;
+  height: 52px;
+  border: 3px solid rgba(6, 78, 59, 0.12);
+  border-top: 3px solid #064e3b;
+  border-radius: 50%;
+  animation: app-spin 0.85s linear infinite;
+}
+
+.app-loading-logo {
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, #064e3b, #047857);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(6, 78, 59, 0.25);
+  margin-bottom: 4px;
+}
+
+.app-loading-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: #064e3b;
+  margin: 0;
+}
+
+@keyframes app-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Farmer App */
+@media (min-width: 1024px) {
+  .app-content-farmer {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 1.5rem 1.75rem 3rem 1.75rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .app-content-farmer {
+    max-width: 1360px;
+    padding: 2rem 2.25rem 3rem 2.25rem;
+  }
+}
+/* Bottom bar is hidden from 900px (matches the top bar breakpoint) */
+@media (min-width: 900px) {
+  .app-main-layout { padding-bottom: 0; }
+}

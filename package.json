@@ -1,0 +1,10 @@
+{
+  "name": "agrisense-app",
+  "version": "1.0.0",
+  "description": "AgriSense MERN Application",
+  "private": true,
+  "scripts": {
+    "dev:backend": "npm --prefix backend run dev",
+    "dev:frontend": "npm --prefix frontend run dev"
+  }
+}
